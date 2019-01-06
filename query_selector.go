@@ -1,4 +1,4 @@
-package dom
+package queryselector
 
 import (
 	"golang.org/x/net/html"
@@ -6,49 +6,27 @@ import (
 
 type nodeFn func(t *html.Node)
 
-func recurseDocument(n *html.Node, fn nodeFn) {
+func classTreeWalker(n *html.Node, c string, s []*html.Node) []*html.Node {
 	if n == nil {
-		return
+		return s
 	}
 
-	fn(n)
+	if NodeContainsClasses(n, c) == true {
+		s = append(s, n)
+	}
 
 	if n.FirstChild != nil {
-		recurseDocument(n.FirstChild, fn)
+		s = classTreeWalker(n.FirstChild, c, s)
 	}
 
-	if n.NextSibling != nil {
-		recurseDocument(n.NextSibling, fn)
-	}
+	s = classTreeWalker(n.NextSibling, c, s)
+
+	return s
 }
 
 // QuerySelectorAll function
-func QuerySelectorAll(doc *html.Node, c string) []*html.Node {
-	pred := func(n *html.Node) {
-
-	}
-
-	recurseDocument(doc, pred)
-
-	var mySlice []*html.Node
-
-	return mySlice
-	/*
-		matches := []*html.Node
-
-		if n == nil {
-			return matches
-		}
-
-		if NodeContainsClasses(n, c) == true {
-			matches = append(matches, n)
-		}
-
-		matches = QuerySelectorAll(n.FirstChild, c, matches)
-		matches = QuerySelectorAll(n.NextSibling, c, matches)
-
-		return matches
-	*/
+func QuerySelectorAll(n *html.Node, c string) []*html.Node {
+	return classTreeWalker(n, c, make([]*html.Node, 0))
 }
 
 // QuerySelector function
