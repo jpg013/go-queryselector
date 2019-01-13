@@ -1,9 +1,6 @@
 package queryselector
 
-import (
-	"golang.org/x/net/html"
-)
-
+/*
 type nodeFn func(t *html.Node)
 
 func classTreeWalker(n *html.Node, c string, s []*html.Node) []*html.Node {
@@ -53,3 +50,4 @@ func QuerySelector(n *html.Node, c string) *html.Node {
 
 	return nil
 }
+*/

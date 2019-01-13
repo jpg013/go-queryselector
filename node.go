@@ -1,5 +1,8 @@
 package queryselector
 
+/*
+package queryselector
+
 import (
 	"strings"
 
@@ -71,14 +74,14 @@ func FindNodeByType(n *html.Node, t string) *html.Node {
 func NodeContainsClasses(n *html.Node, c string) bool {
 	classList := ParseNodeClasslist(n)
 
-	if arrayContains(classList, c) == true {
+	if arrayContainsString(classList, c) == true {
 		return true
 	}
 
 	return false
 }
 
-func arrayContains(cx []string, s string) bool {
+func arrayContainsString(cx []string, s string) bool {
 	matchCount := 0
 
 	split := strings.Fields(s)
@@ -108,3 +111,4 @@ func arrayContains(cx []string, s string) bool {
 
 	return false
 }
+*/
