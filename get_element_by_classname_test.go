@@ -21,7 +21,6 @@ func TestGetElementByClassname(t *testing.T) {
 	}
 }
 
-/*
 func TestGetElementByClassnameMultiple(t *testing.T) {
 	el := GetElementByClassname(doc, "header-links primary-nav")
 
@@ -37,4 +36,3 @@ func TestGetElementByClassnameInvalid(t *testing.T) {
 		t.Errorf("GetElementByClassname returned incorrect value.")
 	}
 }
-*/
