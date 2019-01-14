@@ -12,7 +12,6 @@ var b, ioErr = ioutil.ReadFile("./test_doc.html")
 
 var doc, readerErr = html.Parse(bytes.NewReader(b))
 
-// var testNode = doc.FirstChild.FirstChild.NextSibling.FirstChild
 func TestGetElementByClassname(t *testing.T) {
 	n := GetElementByClassname(doc, "header-links")
 
@@ -34,5 +33,17 @@ func TestGetElementByClassnameInvalid(t *testing.T) {
 
 	if el != nil {
 		t.Errorf("GetElementByClassname returned incorrect value.")
+	}
+}
+
+func TestGetElementsByClassname(t *testing.T) {
+	n := GetElementsByClassname(doc, "section")
+
+	if n == nil {
+		t.Errorf("GetElementsByClassname returned incorrect nil")
+	}
+
+	if len(n) != 2 {
+		t.Errorf("GetElementsByClassname did not return 2 nodes")
 	}
 }

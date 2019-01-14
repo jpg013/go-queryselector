@@ -19,8 +19,8 @@ func GetDocumentBody(doc *html.Node) *html.Node {
 	return WalkTheDOM(doc, fn)
 }
 
-// WalkTheDOM recurses *html.Node returning first node where
-// DomPredicate passes
+// WalkTheDOM recurses *html.Node returning first
+// node where DomPredicate passes
 func WalkTheDOM(n *html.Node, fn DomPredicate) *html.Node {
 	if fn(n) {
 		return n
@@ -35,6 +35,20 @@ func WalkTheDOM(n *html.Node, fn DomPredicate) *html.Node {
 	}
 
 	return nil
+}
+
+// WalkTheDOMAll recurses *html.Node returning first
+// DomPredicate passes node where
+func WalkTheDOMAll(n *html.Node, fn DomPredicate, nodes []*html.Node) []*html.Node {
+	if fn(n) {
+		nodes = append(nodes, n)
+	}
+
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		nodes = WalkTheDOMAll(c, fn, nodes)
+	}
+
+	return nodes
 }
 
 // ElementContainsClass accepts an html.Node  and a string of classnames
